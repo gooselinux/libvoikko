@@ -1,7 +1,7 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 Name:           libvoikko
 Version:        2.2.2
-Release:        1%{?dist}
+Release:        1%{?dist}.goose.1
 Summary:        Voikko is a library for spellcheckers and hyphenators
 
 Group:          System Environment/Libraries
@@ -13,7 +13,7 @@ Source0:        http://downloads.sourceforge.net/voikko/%{name}-%{version}.tar.g
 #Source0:        http://www.puimula.org/htp/testing/%{name}-%{version}rc2.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  python-devel glib2-devel
+BuildRequires:  python-devel glib2-devel gcc-c++
 # Libvoikko >= 2.2 needs this, earlier versions won't work
 Requires:       malaga-suomi-voikko >= 1.4
 
@@ -121,6 +121,10 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/%{name}.py*
 
 %changelog
+* Tue May 8 2012 Clint Savage <herlo@gooseproject.org> - 2.2.2-1.goose.1
+- Rebuilding for GoOSe 6.0
+- Adding BR for gcc-c++
+
 * Wed Nov 11 2009 Ville-Pekka Vainio <vpivaini AT cs.helsinki.fi> - 2.2.2-1
 - Version 2.2.2 fixes a crash found in version 2.2.1 that can occur when the
   APIs that use wchar_t strings as arguments are used.
